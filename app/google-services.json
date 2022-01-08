@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1020004647203",
+    "project_id": "trabalhocm2021",
+    "storage_bucket": "trabalhocm2021.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020004647203:android:c20d25a45a3308f49a8c96",
+        "android_client_info": {
+          "package_name": "ipca.humanbenchmark.trabalhocm2021"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020004647203-es86ob6uaof99lhvvkh0agt8geaogdpr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVmHn46r80qwEq7w--ak1UHLsctXd-d48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020004647203-es86ob6uaof99lhvvkh0agt8geaogdpr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
