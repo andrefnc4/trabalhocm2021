@@ -23,7 +23,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private val db = Firebase.firestore
+    //private val db = Firebase.firestore
 
     /*var notificationReceiver : NotificationReceiver? = null
 
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
+        /*val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
@@ -52,24 +52,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
-
-
-        binding.buttonReaction.setOnClickListener{
-
-            val intent= Intent(this@MainActivity, ReactionGameActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.buttonMemory.setOnClickListener{
-            val intent= Intent(this@MainActivity, MemoryGameActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.buttonText.setOnClickListener{
-            val intent= Intent(this@MainActivity, VerbalMemoryActivity::class.java)
-            startActivity(intent)
-        }
+        navView.setupWithNavController(navController)*/
     }
 
     /*override fun onResume() {

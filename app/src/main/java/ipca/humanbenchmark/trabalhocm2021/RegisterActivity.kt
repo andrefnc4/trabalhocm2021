@@ -43,7 +43,7 @@ class RegisterActivity : AppCompatActivity() {
                         finish()
                     } else {
                         binding.textViewError.visibility = View.VISIBLE
-                        binding.textViewError.text = "Registo falhado"
+                        binding.textViewError.text = "Password demasiado curta, tente novamente!"
                     }
                 }
         }

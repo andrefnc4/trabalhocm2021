@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
                 binding.editTextPassword.text.toString())
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        val intent = Intent(this@LoginActivity, GamesActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {

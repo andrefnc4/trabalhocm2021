@@ -11,6 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
+        <activity
+            android:name=".GamesActivity"
+            android:exported="true" />
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/common_google_signin_btn_text_light" />
@@ -20,6 +24,7 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
+
         <activity
             android:name=".VerbalMemoryActivity"
             android:exported="true" />
@@ -28,6 +33,9 @@
             android:exported="true" />
         <activity
             android:name=".MemoryGameActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true" />
         <activity
             android:name=".RegisterActivity"
@@ -41,9 +49,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" />
 
         <service
             android:name=".MyFirebaseMessagingService"
