@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,7 +20,7 @@
         app:layout_constraintVertical_bias="0.281" />
 
     <Button
-        android:id="@+id/seenButton"
+        android:id="@+id/seen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Seen"
@@ -31,7 +32,7 @@
         app:layout_constraintVertical_bias="0.465" />
 
     <Button
-        android:id="@+id/newButton"
+        android:id="@+id/new_butao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New"
@@ -43,7 +44,7 @@
         app:layout_constraintVertical_bias="0.465" />
 
     <TextView
-        android:id="@+id/textViewHealthPoints"
+        android:id="@+id/HealthPoints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -52,4 +53,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.383" />
+
+    <Button
+        android:id="@+id/buttonBack3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go To Menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

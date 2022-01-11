@@ -1,5 +1,6 @@
 package ipca.humanbenchmark.trabalhocm2021
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,6 +21,7 @@ class MemoryGameActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val start = findViewById<Button>(R.id.start)
+        val back = findViewById<Button>(R.id.buttonBack)
 
         val button1 = findViewById<Button>(R.id.button1)
         val button2 = findViewById<Button>(R.id.button2)
@@ -307,9 +309,11 @@ class MemoryGameActivity : AppCompatActivity() {
                 }
             }
         }
-
-
-
+        binding.buttonBack.setOnClickListener {
+            val intent = Intent(this@MemoryGameActivity, GamesActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     //Randomiza

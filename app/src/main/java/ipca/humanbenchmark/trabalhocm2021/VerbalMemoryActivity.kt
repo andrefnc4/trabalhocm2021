@@ -1,10 +1,13 @@
 package ipca.humanbenchmark.trabalhocm2021
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ipca.humanbenchmark.trabalhocm2021.databinding.ActivityVerbalMemoryBinding
 
+
 class VerbalMemoryActivity : AppCompatActivity() {
+
     lateinit var binding: ActivityVerbalMemoryBinding
     var hp = 3
 
@@ -13,6 +16,7 @@ class VerbalMemoryActivity : AppCompatActivity() {
 
         binding = ActivityVerbalMemoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         // Talvez meter numa Android Cloud as palavras
         val otherStrings = mutableListOf<String>("one", "two", "three", "four" , "five","six","seven","eigth","nine","ten"
@@ -33,17 +37,25 @@ class VerbalMemoryActivity : AppCompatActivity() {
         var perdehp2 = false
 
         //Texto
-        binding.textViewHealthPoints.text = hp.toString()
+        binding.HealthPoints.text = hp.toString()
         binding.textView.text = randomValues
 
-        binding.newButton.setOnClickListener {
+        binding.buttonBack3.setOnClickListener {
+            val intent = Intent(this@VerbalMemoryActivity, GamesActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.newButao.setOnClickListener {
 
             //So para a primeira palavra , ja que a lista ao inicio ta vazia
             if (gameplay_guardado.size == 0){
                 gameplay_guardado.add(randomValues)
             }else{
+
                 //Compara a palavra que ta no screen com as que ja tiveram
                 for (c in 0 until gameplay_guardado.size) {
+
                     if (gameplay_guardado[c].compareTo(randomValues) == 0) {
                         perdehp = true
                         //é igual
@@ -56,9 +68,10 @@ class VerbalMemoryActivity : AppCompatActivity() {
                 //Perde vida
                 if (perdehp == true){
                     hp-=1
-                    binding.textViewHealthPoints.text = hp.toString()
+                    binding.HealthPoints.text = hp.toString()
                     perdehp = false
                 }
+
             }
 
             //Randomiza a proxima palavra
@@ -72,39 +85,46 @@ class VerbalMemoryActivity : AppCompatActivity() {
                 finish()
                 startActivity(intent)
             }
+
         }
 
-        binding.seenButton.setOnClickListener {
+        binding.seen.setOnClickListener {
+
             //Se nao tiver nenhum no igual perde vida
             if (gameplay_guardado.size == 0){
                 hp-=1
             }else{
                 //Compara
                 for (c in 0 until gameplay_guardado.size) {
+
                     if (gameplay_guardado[c].compareTo(randomValues) == 0) {
                         perdehp2 = false
                     }else{
-                        perdehp2 = false
+                        perdehp2 = true
                         break
                     }
                 }
+
                 //Perde hp
                 if (perdehp2 == true){
                     hp-=1
                     perdehp2 = false
                 }
             }
+
             //Randomiza
             otherStrings.shuffle()
             randomValues = otherStrings[0]
             binding.textView.text = randomValues
-            binding.textViewHealthPoints.text = hp.toString()
+            binding.HealthPoints.text = hp.toString()
+
 
             //Perde e Reinicia
             if (hp <= 0){
                 val intent = intent
                 finish()
                 startActivity(intent)
+
             }
         }
     }

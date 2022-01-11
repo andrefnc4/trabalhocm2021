@@ -23,7 +23,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    //private val db = Firebase.firestore
+    private val db = Firebase.firestore
 
     /*var notificationReceiver : NotificationReceiver? = null
 
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)*/
     }
 
-    /*override fun onResume() {
+    override fun onResume() {
         super.onResume()
 
         val user = hashMapOf(
@@ -66,8 +66,8 @@ class MainActivity : AppCompatActivity() {
             .document(FirebaseAuth.getInstance().uid.toString())
             .set(user)
 
-        notificationReceiver = NotificationReceiver()
-        this.registerReceiver(notificationReceiver, IntentFilter(MyFirebaseMessagingService.BROADCAST_NEW_NOTIFICATION))
+        //notificationReceiver = NotificationReceiver()
+        //this.registerReceiver(notificationReceiver, IntentFilter(MyFirebaseMessagingService.BROADCAST_NEW_NOTIFICATION))
     }
 
     override fun onPause() {
@@ -81,8 +81,8 @@ class MainActivity : AppCompatActivity() {
             .document(FirebaseAuth.getInstance().uid.toString())
             .set(user)
 
-        notificationReceiver?.let {
-            this.unregisterReceiver(it)
-        }
-    }*/
+        //notificationReceiver?.let {
+          //  this.unregisterReceiver(it)
+        //}
+    }
 }

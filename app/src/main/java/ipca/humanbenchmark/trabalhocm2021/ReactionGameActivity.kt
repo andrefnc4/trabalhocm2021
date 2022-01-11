@@ -1,5 +1,6 @@
 package ipca.humanbenchmark.trabalhocm2021
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -79,6 +80,12 @@ class ReactionGameActivity : AppCompatActivity() {
                             stopwatch_pc.stop()
                             ta_clicado = true
                             stopwatch_user.start()
+
+                            binding.buttonBack2.setOnClickListener {
+                                val intent = Intent(this@ReactionGameActivity, GamesActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
                         }
                     }.start()
                 }
