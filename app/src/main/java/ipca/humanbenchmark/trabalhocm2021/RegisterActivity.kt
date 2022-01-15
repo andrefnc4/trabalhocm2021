@@ -10,13 +10,16 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import ipca.humanbenchmark.trabalhocm2021.databinding.ActivityLoginBinding
 import ipca.humanbenchmark.trabalhocm2021.databinding.ActivityRegisterBinding
+import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -43,7 +46,7 @@ class RegisterActivity : AppCompatActivity() {
                         finish()
                     } else {
                         binding.textViewError.visibility = View.VISIBLE
-                        binding.textViewError.text = "Password demasiado curta, tente novamente!"
+                        binding.textViewError.text = "Password demasiado curta ou falha de internet, tente novamente!"
                     }
                 }
         }

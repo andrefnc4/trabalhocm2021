@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             .set(user)
 
         //notificationReceiver = NotificationReceiver()
-        //this.registerReceiver(notificationReceiver, IntentFilter(MyFirebaseMessagingService.BROADCAST_NEW_NOTIFICATION))
+        //this.registerReceiver(notificationReceiver, IntentFilter(MyFirebaseMessagingService.BROADCAST_NET_NOTIFICATION))
     }
 
     override fun onPause() {
@@ -81,8 +81,9 @@ class MainActivity : AppCompatActivity() {
             .document(FirebaseAuth.getInstance().uid.toString())
             .set(user)
 
-        //notificationReceiver?.let {
-          //  this.unregisterReceiver(it)
-        //}
+        /*notificationReceiver?.let {
+            this.unregisterReceiver(it)
+        }*/
+
     }
 }
