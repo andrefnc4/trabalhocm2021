@@ -23,8 +23,6 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    private val db = Firebase.firestore
-
     /*var notificationReceiver : NotificationReceiver? = null
 
     inner class NotificationReceiver : BroadcastReceiver() {
@@ -55,35 +53,5 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)*/
     }
 
-    override fun onResume() {
-        super.onResume()
 
-        val user = hashMapOf(
-            "online" to true,
-            "date" to Timestamp(Date()),
-        )
-        db.collection("users")
-            .document(FirebaseAuth.getInstance().uid.toString())
-            .set(user)
-
-        //notificationReceiver = NotificationReceiver()
-        //this.registerReceiver(notificationReceiver, IntentFilter(MyFirebaseMessagingService.BROADCAST_NET_NOTIFICATION))
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-        val user = hashMapOf(
-            "online" to false,
-            "date" to Timestamp(Date()),
-        )
-        db.collection("users")
-            .document(FirebaseAuth.getInstance().uid.toString())
-            .set(user)
-
-        /*notificationReceiver?.let {
-            this.unregisterReceiver(it)
-        }*/
-
-    }
 }

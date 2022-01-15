@@ -10,7 +10,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -19,12 +18,15 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import ipca.humanbenchmark.trabalhocm2021.databinding.ActivityLoginBinding
 import ipca.humanbenchmark.trabalhocm2021.databinding.ActivityRegisterBinding
-import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
+    private lateinit var email : EditText
+    private lateinit var password : EditText
+
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
+    val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,23 +34,29 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
+
+        email = findViewById(R.id.editTextEmail)
+        password = findViewById(R.id.editTextPassword)
 
         binding.buttonRegister.setOnClickListener {
             binding.textViewError.visibility = View.INVISIBLE
-            auth.createUserWithEmailAndPassword(
-                binding.editTextEmail.text.toString(),
-                binding.editTextPassword.text.toString())
+            auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
+                        addUserToDatabase(email.text.toString(), auth.currentUser?.uid!!)
                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-                        startActivity(intent)
                         finish()
+                        startActivity(intent)
                     } else {
                         binding.textViewError.visibility = View.VISIBLE
                         binding.textViewError.text = "Password demasiado curta ou falha de internet, tente novamente!"
                     }
                 }
         }
+    }
+
+    private fun addUserToDatabase(email : String, uid : String) {
+        db.collection("users").add(User(email, uid))
     }
 }
