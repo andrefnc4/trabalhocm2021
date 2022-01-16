@@ -30,5 +30,4 @@ class AimView : AppCompatActivity() {
         gameView.resume()
     }
 
-
 }

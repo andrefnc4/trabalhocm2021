@@ -16,6 +16,7 @@ import com.google.firebase.ktx.Firebase
 
 class RegisterActivity : AppCompatActivity() {
 
+    private lateinit var username :EditText
     private lateinit var email : EditText
     private lateinit var password : EditText
     private lateinit var buttonSignUp : Button
@@ -32,6 +33,7 @@ class RegisterActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
+        username = findViewById(R.id.editTextUsername)
         email = findViewById(R.id.editTextEmail)
         password = findViewById(R.id.editTextPassword)
         buttonSignUp = findViewById(R.id.buttonRegister)
@@ -39,11 +41,12 @@ class RegisterActivity : AppCompatActivity() {
 
 
         buttonSignUp.setOnClickListener{
+            val username = username.text.toString()
             val email = email.text.toString()
             val password = password.text.toString()
 
-            if(email.length > 5 && password.length >5) {
-                signUp(email, password)
+            if(username.length > 4 && email.length > 5 && password.length >5) {
+                signUp(username, email, password)
             } else{
                 message.isVisible = true
                 message.text = "Password demasiado curta ou falha de internet! Tente novamente."
@@ -51,11 +54,11 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun signUp(email: String, password: String) {
+    private fun signUp(username : String, email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    addUserToDatabase(email, auth.currentUser?.uid!!)
+                    addUserToDatabase(username, email, auth.currentUser?.uid!!)
                     val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                     finish()
                     startActivity(intent)
@@ -66,10 +69,7 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 
-    private fun addUserToDatabase(email : String, uid : String) {
-        db.collection("user").add(User(email, uid))
+    private fun addUserToDatabase(username: String, email : String, uid : String) {
+        db.collection("users").add(User(username, email, uid))
     }
-
-
-
 }

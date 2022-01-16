@@ -15,7 +15,7 @@ import androidx.core.view.isVisible
 class MemoryGameActivity : AppCompatActivity() {
     lateinit var binding: ActivityMemoryGameBinding
     var podejogar = 0
-    var valorParaEnviar = 0
+    var guardar_score = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -188,9 +188,10 @@ class MemoryGameActivity : AppCompatActivity() {
                     cpu()
                 }else{
                     num++
+                    guardar_score++
                 }
             }else{
-                Perdeu(num)
+                Perdeu(guardar_score)
             }
         }
         binding.button2.setOnClickListener {
@@ -202,9 +203,10 @@ class MemoryGameActivity : AppCompatActivity() {
                     cpu()
                 }else{
                     num++
+                    guardar_score++
                 }
             }else{
-                Perdeu(num)
+                Perdeu(guardar_score)
             }
         }
         binding.button3.setOnClickListener {
@@ -216,9 +218,10 @@ class MemoryGameActivity : AppCompatActivity() {
                     cpu()
                 }else{
                     num++
+                    guardar_score++
                 }
             }else{
-                Perdeu(num)
+                Perdeu(guardar_score)
             }
         }
         binding.button4.setOnClickListener {
@@ -230,9 +233,10 @@ class MemoryGameActivity : AppCompatActivity() {
                     cpu()
                 }else{
                     num++
+                    guardar_score++
                 }
             }else{
-                Perdeu(num)
+                Perdeu(guardar_score)
             }
         }
         binding.button5.setOnClickListener {
@@ -244,9 +248,10 @@ class MemoryGameActivity : AppCompatActivity() {
                     cpu()
                 }else{
                     num++
+                    guardar_score++
                 }
             }else{
-                Perdeu(num)
+                Perdeu(guardar_score)
             }
         }
         binding.button6.setOnClickListener {
@@ -259,9 +264,10 @@ class MemoryGameActivity : AppCompatActivity() {
                     cpu()
                 }else{
                     num++
+                    guardar_score++
                 }
             }else{
-                Perdeu(num)
+                Perdeu(guardar_score)
             }
 
         }
@@ -274,9 +280,10 @@ class MemoryGameActivity : AppCompatActivity() {
                     cpu()
                 }else{
                     num++
+                    guardar_score++
                 }
             }else{
-                Perdeu(num)
+                Perdeu(guardar_score)
             }
         }
         binding.button8.setOnClickListener {
@@ -289,9 +296,10 @@ class MemoryGameActivity : AppCompatActivity() {
                     cpu()
                 }else{
                     num++
+                    guardar_score++
                 }
             }else{
-                Perdeu(num)
+                Perdeu(guardar_score)
             }
         }
         binding.button9.setOnClickListener {
@@ -304,9 +312,10 @@ class MemoryGameActivity : AppCompatActivity() {
                     cpu()
                 }else{
                     num++
+                    guardar_score++
                 }
             }else{
-                Perdeu(num)
+                Perdeu(guardar_score)
             }
         }
 
@@ -314,7 +323,6 @@ class MemoryGameActivity : AppCompatActivity() {
             val intent= Intent(this@MemoryGameActivity, GamesActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     //Randomiza
@@ -331,14 +339,13 @@ class MemoryGameActivity : AppCompatActivity() {
 
     //Lose
     fun Perdeu(score: Int){
-        valorParaEnviar = score
         //Meter endscreen , o score é o score final
         val intent= Intent(this@MemoryGameActivity, EndGameActivity::class.java)
-        startActivity(intent)
-    }
 
-    fun getValue(): Int? //returns a value
-    {
-        return valorParaEnviar
+        val b = Bundle()
+        b.putString("score", " " +score.toString())
+        intent.putExtra("score_id", b)
+        startActivity(intent)
+
     }
 }

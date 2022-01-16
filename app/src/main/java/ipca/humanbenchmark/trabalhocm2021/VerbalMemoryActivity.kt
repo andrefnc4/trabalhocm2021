@@ -57,7 +57,6 @@ class VerbalMemoryActivity : AppCompatActivity() {
                         //é igual
                     } else {
                         gameplay_guardado.add(randomValues)
-                        score++
                         //nao é
                     }
                 }
@@ -67,6 +66,8 @@ class VerbalMemoryActivity : AppCompatActivity() {
                     hp-=1
                     binding.HealthPoints.text = hp.toString()
                     perdehp = false
+                }else{
+                    score++
                 }
 
             }
@@ -76,10 +77,15 @@ class VerbalMemoryActivity : AppCompatActivity() {
             randomValues = otherStrings[0]
             binding.textView.text = randomValues
 
-            //Quando perde reinicia
+            //Quando perde
             if (hp <= 0){
-                val intent = intent
                 finish()
+
+                val intent= Intent(this@VerbalMemoryActivity, EndGameActivity::class.java)
+
+                val b = Bundle()
+                b.putString("score", " " +score.toString())
+                intent.putExtra("score_id", b)
                 startActivity(intent)
             }
 
@@ -97,7 +103,6 @@ class VerbalMemoryActivity : AppCompatActivity() {
 
                     if (gameplay_guardado[c].compareTo(randomValues) == 0) {
                         perdehp2 = false
-                        score++
                     }else{
                         perdehp2 = true
                         break
@@ -108,6 +113,8 @@ class VerbalMemoryActivity : AppCompatActivity() {
                 if (perdehp2 == true){
                     hp-=1
                     perdehp2 = false
+                }else{
+                    score++
                 }
             }
 
@@ -118,12 +125,16 @@ class VerbalMemoryActivity : AppCompatActivity() {
             binding.HealthPoints.text = hp.toString()
 
 
-            //Perde e Reinicia
+            //Perde
             if (hp <= 0){
-                val intent = intent
                 finish()
-                startActivity(intent)
 
+                val intent= Intent(this@VerbalMemoryActivity, EndGameActivity::class.java)
+
+                val b = Bundle()
+                b.putString("score", " " + score.toString())
+                intent.putExtra("score_id", b)
+                startActivity(intent)
             }
 
 

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.os.Bundle
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
@@ -85,8 +86,13 @@ class AimTrainerActivity : SurfaceView, Runnable {
             //control()
         }
 
+        var i = Intent(context, EndGameActivity::class.java)
+        val b = Bundle()
+        b.putString("score", " " + points)
+        i.putExtra("score_id", b)
+        context.startActivity(i)
+
         //Perdeu e vai pro main menu
-        context.startActivity(Intent(context, GamesActivity::class.java))
     }
 
     fun resume() {
@@ -157,5 +163,9 @@ class AimTrainerActivity : SurfaceView, Runnable {
             }
         }
         return true
+    }
+    fun getValue(): Int? //returns a value
+    {
+        return points
     }
 }
