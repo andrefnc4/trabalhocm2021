@@ -10,8 +10,16 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import androidx.core.content.ContextCompat.startActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
-class AimTrainer : SurfaceView, Runnable {
+class AimTrainerActivity : SurfaceView, Runnable {
+
+    //database
+    val db = Firebase.firestore
+    private lateinit var auth: FirebaseAuth
 
     var playing = false
     lateinit var gameThread: Thread
@@ -19,16 +27,15 @@ class AimTrainer : SurfaceView, Runnable {
     var i : Int = 1
     var id_disco : Int = 0
 
-    var stacking : Long = 30
+    //Stacking é os segundos que demora até acabar o jogo
+    var stacking : Long = 10
     lateinit var surfaceHolder: SurfaceHolder
     var canvas: Canvas? = null
     lateinit var paint: Paint
 
     //pontos
     var points = 0
-
     var tStart = System.currentTimeMillis()
-
     var disc = arrayListOf<AimTrainerDiscGen>()
 
     constructor(
@@ -64,9 +71,11 @@ class AimTrainer : SurfaceView, Runnable {
 
         paint = Paint()
 
+        //Inicializa o disco
         for (index in 0..0) {
             context?.let { AimTrainerDiscGen(it, screenWidth, screenHeight,id_disco) }?.let { disc.add(it) }
         }
+
     }
 
     override fun run() {
@@ -75,8 +84,9 @@ class AimTrainer : SurfaceView, Runnable {
             draw()
             //control()
         }
-        //Perdeu e vai pro main
-        context.startActivity(Intent(context, MainActivity::class.java))
+
+        //Perdeu e vai pro main menu
+        context.startActivity(Intent(context, GamesActivity::class.java))
     }
 
     fun resume() {
@@ -86,34 +96,37 @@ class AimTrainer : SurfaceView, Runnable {
     }
 
     fun update() {
-        var screenWidth2: Int = 0
-        var screenHeight2: Int = 0
 
         val tEnd = System.currentTimeMillis()
         val tDelta = tEnd - tStart
         var elapsedSeconds = tDelta / 1000
 
+        //Se chegar ao fim dos segundos acaba o jogo
         if (elapsedSeconds == stacking){
             playing = false
-            //endscreen c points
         }else{
             for (e in disc) {
                 e.update()
             }
         }
+
+
     }
 
+    //Desenha
     fun draw() {
         if (surfaceHolder.surface.isValid) {
 
             canvas = surfaceHolder.lockCanvas()
-            canvas?.drawColor(Color.WHITE)
+            canvas?.drawColor(Color.GRAY)
 
             paint.color = Color.YELLOW
 
             for (e in disc) {
                 canvas?.drawBitmap(e.bitmap, e.x, e.y, paint)
             }
+
+
             surfaceHolder.unlockCanvasAndPost(canvas)
         }
     }
@@ -122,6 +135,7 @@ class AimTrainer : SurfaceView, Runnable {
         Thread.sleep(17)
     }
 
+    //Se tocar na hitbox de o disco dá 1 ponto e elimina o disco , fazendo que dá spawn a um novo
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
         var touchX = event?.getX()
@@ -139,12 +153,6 @@ class AimTrainer : SurfaceView, Runnable {
                         }
 
                     }
-                }
-                MotionEvent.ACTION_UP -> {
-                    System.out.println("Touching up!")
-                }
-                MotionEvent.ACTION_MOVE -> {
-                    System.out.println("Sliding your finger around on the screen.")
                 }
             }
         }

@@ -26,9 +26,14 @@ class GamesActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.buttonText.setOnClickListener{
+        binding.buttonVerbalMemory.setOnClickListener{
             val intent= Intent(this@GamesActivity, VerbalMemoryActivity::class.java)
             startActivity(intent)
         }
+
+       binding.buttonAimTrainer.setOnClickListener {
+           val intent = Intent(this@GamesActivity, AimView::class.java)
+           startActivity(intent)
+       }
     }
 }

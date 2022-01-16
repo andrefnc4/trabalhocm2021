@@ -10,7 +10,7 @@ class VerbalMemoryActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityVerbalMemoryBinding
     var hp = 3
-
+    var score = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -18,7 +18,7 @@ class VerbalMemoryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        // Talvez meter numa Android Cloud as palavras
+        // Lista de Palavras para usar
         val otherStrings = mutableListOf<String>("one", "two", "three", "four" , "five","six","seven","eigth","nine","ten"
             ,"eleven","twelve","thirteen","fourteen","fiveteen","sixteen","seventeen","eigthteen","nineteen","twenty")
 
@@ -40,17 +40,13 @@ class VerbalMemoryActivity : AppCompatActivity() {
         binding.HealthPoints.text = hp.toString()
         binding.textView.text = randomValues
 
-        binding.buttonBack3.setOnClickListener {
-            val intent = Intent(this@VerbalMemoryActivity, GamesActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
+        //Butao new , para novas palavras
         binding.newButao.setOnClickListener {
 
-            //So para a primeira palavra , ja que a lista ao inicio ta vazia
+            //Só para a primeira palavra , já que a lista ao inicio tá vazia
             if (gameplay_guardado.size == 0){
                 gameplay_guardado.add(randomValues)
+                score++
             }else{
 
                 //Compara a palavra que ta no screen com as que ja tiveram
@@ -61,6 +57,7 @@ class VerbalMemoryActivity : AppCompatActivity() {
                         //é igual
                     } else {
                         gameplay_guardado.add(randomValues)
+                        score++
                         //nao é
                     }
                 }
@@ -88,6 +85,7 @@ class VerbalMemoryActivity : AppCompatActivity() {
 
         }
 
+        //Butao seen , para palavras vistas
         binding.seen.setOnClickListener {
 
             //Se nao tiver nenhum no igual perde vida
@@ -99,6 +97,7 @@ class VerbalMemoryActivity : AppCompatActivity() {
 
                     if (gameplay_guardado[c].compareTo(randomValues) == 0) {
                         perdehp2 = false
+                        score++
                     }else{
                         perdehp2 = true
                         break
@@ -126,6 +125,13 @@ class VerbalMemoryActivity : AppCompatActivity() {
                 startActivity(intent)
 
             }
+
+
+        }
+
+        binding.buttonBack3.setOnClickListener{
+            val intent= Intent(this@VerbalMemoryActivity, GamesActivity::class.java)
+            startActivity(intent)
         }
     }
 }

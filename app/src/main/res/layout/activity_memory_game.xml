@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MemoryGameActivity">
+    tools:context=".MemoryGameActivity"
+    android:background="#314260">
 
     <Button
         android:id="@+id/button1"
@@ -108,7 +109,10 @@
         android:id="@+id/score_memory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Score"
+        android:background="#FEE601"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,6 +123,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="start"
+        android:background="#FEE601"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -127,11 +134,26 @@
         app:layout_constraintVertical_bias="0.726" />
 
     <Button
-        android:id="@+id/buttonBack"
+        android:id="@+id/buttonBackMemory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go To Menu"
+        android:background="#FEE601"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="148dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.972"
+        app:srcCompat="@drawable/stock_photography_light_brain_logo_light_8d08ffb023ccdcdfdf8731e3d3f7b337" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

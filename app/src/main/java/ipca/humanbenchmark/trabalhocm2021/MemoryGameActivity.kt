@@ -14,6 +14,8 @@ import androidx.core.view.isVisible
 
 class MemoryGameActivity : AppCompatActivity() {
     lateinit var binding: ActivityMemoryGameBinding
+    var podejogar = 0
+    var valorParaEnviar = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +23,8 @@ class MemoryGameActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val start = findViewById<Button>(R.id.start)
-        val back = findViewById<Button>(R.id.buttonBack)
 
+        //Botoes
         val button1 = findViewById<Button>(R.id.button1)
         val button2 = findViewById<Button>(R.id.button2)
         val button3 = findViewById<Button>(R.id.button3)
@@ -33,32 +35,27 @@ class MemoryGameActivity : AppCompatActivity() {
         val button8 = findViewById<Button>(R.id.button8)
         val button9 = findViewById<Button>(R.id.button9)
 
-        button1.setBackgroundColor(Color.BLUE)
-        button2.setBackgroundColor(Color.BLUE)
-        button3.setBackgroundColor(Color.BLUE)
-        button4.setBackgroundColor(Color.BLUE)
-        button5.setBackgroundColor(Color.BLUE)
-        button6.setBackgroundColor(Color.BLUE)
-        button7.setBackgroundColor(Color.BLUE)
-        button8.setBackgroundColor(Color.BLUE)
-        button9.setBackgroundColor(Color.BLUE)
-
-        button1.isClickable = false
-        button2.isClickable = false
-        button3.isClickable = false
-        button4.isClickable = false
-        button5.isClickable = false
-        button6.isClickable = false
-        button7.isClickable = false
-        button8.isClickable = false
-        button8.isClickable = false
+        //Cor para os botoes
+        button1.setBackgroundColor(Color.BLACK)
+        button2.setBackgroundColor(Color.BLACK)
+        button3.setBackgroundColor(Color.BLACK)
+        button4.setBackgroundColor(Color.BLACK)
+        button5.setBackgroundColor(Color.BLACK)
+        button6.setBackgroundColor(Color.BLACK)
+        button7.setBackgroundColor(Color.BLACK)
+        button8.setBackgroundColor(Color.BLACK)
+        button9.setBackgroundColor(Color.BLACK)
 
 
-
-        var podejogar = 1
         var num = 0
+
+        //Listas que guardam a sequencia e o que o jogador joga cada Rodada
         val list_para_butoes = mutableListOf<Int>()
         val list_para_jogar = mutableListOf<Int>()
+
+
+        val texto = findViewById<TextView>(R.id.score_memory)
+        texto.text = "Memory Game"
 
         //Muda as cores que foram randomizadas
         fun cpu(){
@@ -67,132 +64,124 @@ class MemoryGameActivity : AppCompatActivity() {
             var distancia = 700
             num = 0
 
+            //Limpa o que o jogador clicou na Ronda Passada
             list_para_jogar.clear()
 
-            //POE LOSE SCREEN
-            if (podejogar == 1){
-                val texto = findViewById<TextView>(R.id.score_memory)
-                texto.text = "Perdeu"
-            }
-
             while (tamanho > 0) {
-                //time delay
 
                 var x = list_para_butoes[numero]
                 tamanho = tamanho - 1
                 numero = numero + 1
                 distancia = distancia + 700
 
+                //Da delay um a um a mudar de cor
                 when (x) {
 
                     1 -> {
                         Handler().postDelayed({
-                            button1.setBackgroundColor(Color.RED)
+                            button1.setBackgroundColor(Color.WHITE)
                         }, 2000 + distancia.toLong())
                         Handler().postDelayed({
-                            button1.setBackgroundColor(Color.BLUE)
+                            button1.setBackgroundColor(Color.BLACK)
                         }, 2500 + distancia.toLong())
                     }
                     2 -> {
                         Handler().postDelayed({
-                            button2.setBackgroundColor(Color.RED)
+                            button2.setBackgroundColor(Color.WHITE)
                         }, 2000 + distancia.toLong())
                         Handler().postDelayed({
-                            button2.setBackgroundColor(Color.BLUE)
+                            button2.setBackgroundColor(Color.BLACK)
                         }, 2500 + distancia.toLong())
                     }
                     3 -> {
                         Handler().postDelayed({
-                            button3.setBackgroundColor(Color.RED)
+                            button3.setBackgroundColor(Color.WHITE)
                         }, 2000 + distancia.toLong())
                         Handler().postDelayed({
-                            button3.setBackgroundColor(Color.BLUE)
+                            button3.setBackgroundColor(Color.BLACK)
                         }, 2500 + distancia.toLong())
 
                     }
                     4 -> {
                         Handler().postDelayed({
-                            button4.setBackgroundColor(Color.RED)
+                            button4.setBackgroundColor(Color.WHITE)
                         }, 2000 + distancia.toLong())
                         Handler().postDelayed({
-                            button4.setBackgroundColor(Color.BLUE)
+                            button4.setBackgroundColor(Color.BLACK)
                         }, 2500 + distancia.toLong())
                     }
                     5 -> {
                         Handler().postDelayed({
-                            button5.setBackgroundColor(Color.RED)
+                            button5.setBackgroundColor(Color.WHITE)
                         }, 2000 + distancia.toLong())
                         Handler().postDelayed({
-                            button5.setBackgroundColor(Color.BLUE)
+                            button5.setBackgroundColor(Color.BLACK)
                         }, 2500 + distancia.toLong())
                     }
                     6 -> {
                         Handler().postDelayed({
-                            button6.setBackgroundColor(Color.RED)
+                            button6.setBackgroundColor(Color.WHITE)
                         }, 2000 + distancia.toLong())
                         Handler().postDelayed({
-                            button6.setBackgroundColor(Color.BLUE)
+                            button6.setBackgroundColor(Color.BLACK)
                         }, 2500 + distancia.toLong())
                     }
                     7 -> {
                         Handler().postDelayed({
-                            button7.setBackgroundColor(Color.RED)
+                            button7.setBackgroundColor(Color.WHITE)
                         }, 2000 + distancia.toLong())
                         Handler().postDelayed({
-                            button7.setBackgroundColor(Color.BLUE)
+                            button7.setBackgroundColor(Color.BLACK)
                         }, 2500 + distancia.toLong())
                     }
                     8 -> {
                         Handler().postDelayed({
-                            button8.setBackgroundColor(Color.RED)
+                            button8.setBackgroundColor(Color.WHITE)
                         }, 2000 + distancia.toLong())
                         Handler().postDelayed({
-                            button8.setBackgroundColor(Color.BLUE)
+                            button8.setBackgroundColor(Color.BLACK)
                         }, 2500 + distancia.toLong())
                     }
                     9 -> {
                         Handler().postDelayed({
-                            button9.setBackgroundColor(Color.RED)
+                            button9.setBackgroundColor(Color.WHITE)
                         }, 2000 + distancia.toLong())
                         Handler().postDelayed({
-                            button9.setBackgroundColor(Color.BLUE)
+                            button9.setBackgroundColor(Color.BLACK)
                         }, 2500 + distancia.toLong())
                     }
 
                 }
+                val texto = findViewById<TextView>(R.id.score_memory)
+                texto.text = "Ronda " + numero
+
             }
-            val texto = findViewById<TextView>(R.id.score_memory)
-            texto.text = "Jogando"
+
+
         }
 
+        //Start começa o jogo
         start.setOnClickListener {
+
+            //Randomiza o primeiro cubo a piscar
             doOperation(list_para_butoes)
+            //Poe o cubo a piscar
             cpu()
-            podejogar = 0
+            podejogar = 1
 
             val texto = findViewById<TextView>(R.id.score_memory)
-            texto.text = "Jogando"
+            texto.text = "Decore a Ordem. Quando Parar de Piscar Clicka a Sequencia"
 
             start.isVisible = false
             start.isClickable = false
 
         }
 
-        //Playing
-        button1.isClickable = true
-        button2.isClickable = true
-        button3.isClickable = true
-        button4.isClickable = true
-        button5.isClickable = true
-        button6.isClickable = true
-        button7.isClickable = true
-        button8.isClickable = true
-        button8.isClickable = true
+        //Ver se o jogador clicou os botoes na sequencia certa
 
-        binding.button1.setOnClickListener {
+        binding.button1.setOnClickListener{
             list_para_jogar.add(1)
             if (list_para_jogar[num] == list_para_butoes[num]) {
-                podejogar = 0
 
                 if (list_para_jogar.size == list_para_butoes.size){
                     doOperation(list_para_butoes)
@@ -200,12 +189,13 @@ class MemoryGameActivity : AppCompatActivity() {
                 }else{
                     num++
                 }
+            }else{
+                Perdeu(num)
             }
         }
         binding.button2.setOnClickListener {
             list_para_jogar.add(2)
             if (list_para_jogar[num] == list_para_butoes[num]) {
-                podejogar = 0
 
                 if (list_para_jogar.size == list_para_butoes.size){
                     doOperation(list_para_butoes)
@@ -213,12 +203,13 @@ class MemoryGameActivity : AppCompatActivity() {
                 }else{
                     num++
                 }
+            }else{
+                Perdeu(num)
             }
         }
         binding.button3.setOnClickListener {
             list_para_jogar.add(3)
             if (list_para_jogar[num] == list_para_butoes[num]) {
-                podejogar = 0
 
                 if (list_para_jogar.size == list_para_butoes.size){
                     doOperation(list_para_butoes)
@@ -226,12 +217,13 @@ class MemoryGameActivity : AppCompatActivity() {
                 }else{
                     num++
                 }
+            }else{
+                Perdeu(num)
             }
         }
         binding.button4.setOnClickListener {
             list_para_jogar.add(4)
             if (list_para_jogar[num] == list_para_butoes[num]) {
-                podejogar = 0
 
                 if (list_para_jogar.size == list_para_butoes.size){
                     doOperation(list_para_butoes)
@@ -239,12 +231,13 @@ class MemoryGameActivity : AppCompatActivity() {
                 }else{
                     num++
                 }
+            }else{
+                Perdeu(num)
             }
         }
         binding.button5.setOnClickListener {
             list_para_jogar.add(5)
             if (list_para_jogar[num] == list_para_butoes[num]) {
-                podejogar = 0
 
                 if (list_para_jogar.size == list_para_butoes.size){
                     doOperation(list_para_butoes)
@@ -252,13 +245,14 @@ class MemoryGameActivity : AppCompatActivity() {
                 }else{
                     num++
                 }
+            }else{
+                Perdeu(num)
             }
         }
         binding.button6.setOnClickListener {
             list_para_jogar.add(6)
 
             if (list_para_jogar[num] == list_para_butoes[num]) {
-                podejogar = 0
 
                 if (list_para_jogar.size == list_para_butoes.size){
                     doOperation(list_para_butoes)
@@ -266,12 +260,14 @@ class MemoryGameActivity : AppCompatActivity() {
                 }else{
                     num++
                 }
+            }else{
+                Perdeu(num)
             }
+
         }
         binding.button7.setOnClickListener {
             list_para_jogar.add(7)
             if (list_para_jogar[num] == list_para_butoes[num]) {
-                podejogar = 0
 
                 if (list_para_jogar.size == list_para_butoes.size){
                     doOperation(list_para_butoes)
@@ -279,13 +275,14 @@ class MemoryGameActivity : AppCompatActivity() {
                 }else{
                     num++
                 }
+            }else{
+                Perdeu(num)
             }
         }
         binding.button8.setOnClickListener {
             list_para_jogar.add(8)
 
             if (list_para_jogar[num] == list_para_butoes[num]) {
-                podejogar = 0
 
                 if (list_para_jogar.size == list_para_butoes.size){
                     doOperation(list_para_butoes)
@@ -293,13 +290,14 @@ class MemoryGameActivity : AppCompatActivity() {
                 }else{
                     num++
                 }
+            }else{
+                Perdeu(num)
             }
         }
         binding.button9.setOnClickListener {
             list_para_jogar.add(9)
 
             if (list_para_jogar[num] == list_para_butoes[num]) {
-                podejogar = 0
 
                 if (list_para_jogar.size == list_para_butoes.size){
                     doOperation(list_para_butoes)
@@ -307,17 +305,20 @@ class MemoryGameActivity : AppCompatActivity() {
                 }else{
                     num++
                 }
+            }else{
+                Perdeu(num)
             }
         }
-        binding.buttonBack.setOnClickListener {
-            val intent = Intent(this@MemoryGameActivity, GamesActivity::class.java)
+
+        binding.buttonBackMemory.setOnClickListener{
+            val intent= Intent(this@MemoryGameActivity, GamesActivity::class.java)
             startActivity(intent)
-            finish()
         }
+
     }
 
     //Randomiza
-    private fun doOperation(list: MutableList<Int>) {
+    fun doOperation(list: MutableList<Int>) {
 
         val texto = findViewById<TextView>(R.id.score_memory)
         val randomValues = List(1) { Random.nextInt(1, 9) }
@@ -328,58 +329,16 @@ class MemoryGameActivity : AppCompatActivity() {
 
     }
 
-    fun Playing(
-        list_para_butoes: MutableList<Int>,
-        list_para_jogar: MutableList<Int>,
-        num: Int): Boolean {
+    //Lose
+    fun Perdeu(score: Int){
+        valorParaEnviar = score
+        //Meter endscreen , o score é o score final
+        val intent= Intent(this@MemoryGameActivity, EndGameActivity::class.java)
+        startActivity(intent)
+    }
 
-
-        val texto = findViewById<TextView>(R.id.score_memory)
-        texto.text = "Jogando"
-
-
-        var num = num
-
-        while (num < list_para_butoes.size) {
-
-            binding.button1.setOnClickListener {
-                list_para_jogar[num] = 1
-                num++
-            }
-            binding.button1.setOnClickListener {
-                list_para_jogar[num] = 2
-                num++
-            }
-            binding.button1.setOnClickListener {
-                list_para_jogar[num] = 3
-                num++
-            }
-            binding.button1.setOnClickListener {
-                list_para_jogar[num] = 4
-                num++
-            }
-            binding.button1.setOnClickListener {
-                list_para_jogar[num] = 5
-                num++
-            }
-            binding.button1.setOnClickListener {
-                list_para_jogar[num] = 6
-                num++
-            }
-            binding.button1.setOnClickListener {
-                list_para_jogar[num] = 7
-                num++
-            }
-            binding.button1.setOnClickListener {
-                list_para_jogar[num] = 8
-                num++
-            }
-
-            if (list_para_jogar[num] != list_para_butoes[num]) {
-                return false
-
-            }
-        }
-        return true
+    fun getValue(): Int? //returns a value
+    {
+        return valorParaEnviar
     }
 }

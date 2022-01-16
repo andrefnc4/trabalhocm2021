@@ -10,35 +10,35 @@ class AimTrainerDiscGen {
     var bitmap : Bitmap
     var x : Float
     var y : Float
-    var speed : Int = 0
-    var pode : Boolean = false
-
-    //var renew: Boolean = false
-    var tStart = System.currentTimeMillis()
-    var stacking : Long = 5
 
     var maxY : Float
     var minY : Float
     var maxX : Float
     var minX : Float
 
+    //Detetor de colisao
     var detectColosion = Rect()
 
+    //Constroi o disco
     constructor(context: Context, screenWidth: Int, screenHeight : Int, Id : Int){
         maxX = screenWidth.toFloat()
         minX = 0F
         maxY = screenHeight.toFloat()
         minY = 0F
 
+        //Bitmap
         bitmap = BitmapFactory.decodeResource(context.resources,R.drawable.aimtrainer)
 
+        //Gera as posicoes
         var generator = Random()
         y = generator.nextInt(1100).toFloat()
         x = generator.nextInt(800).toFloat()
 
         detectColosion = Rect(x.toInt(),y.toInt(),bitmap.width, bitmap.height)
+
     }
 
+    //Se um disco for clicado da generate a um novo em outra posicao
     fun update(){
 
         detectColosion.left = x.toInt()
@@ -50,21 +50,8 @@ class AimTrainerDiscGen {
             var generator = Random()
             y = generator.nextInt(1100).toFloat()
             x = generator.nextInt(800).toFloat()
+
         }
-    }
 
-    //testar
-    fun transform(source: Bitmap): Float {
-
-        val size = Math.min(source.width, source.height)
-        val x2 = (source.width - size) / 2
-        val y2 = (source.height - size) / 2
-
-        val r = size / 2f
-
-        return r
-    }
-
-    fun size_min(detectColosion_new : Rect, x_new : Float, y_new : Float){
     }
 }

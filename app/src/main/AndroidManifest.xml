@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
         <activity
-            android:name=".AimTrainer"
+            android:name=".EndGameActivity"
+            android:exported="true" />
+        <activity
+            android:name=".AimView"
             android:exported="true" />
         <activity
             android:name=".GamesActivity"
